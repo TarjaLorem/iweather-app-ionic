@@ -7,15 +7,21 @@ import { WeatherProvider } from '../../providers/weather/weather';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  location: {
-    city: 'Lviv'
+  public location: {
+    city: string
   }
 
   constructor(public navCtrl: NavController,
-              private weatherProvider: WeatherProvider) {}
+              private weatherProvider: WeatherProvider) {
+                this.outputResult();
+              }
 
   outputResult() {
-    this.weatherProvider.getWeather(this.location.city);
+    console.log('outputResult___');
+    this.location = {
+      city: 'Lviv'
+    }
+    this.weatherProvider.getWeather(this.location.city).subscribe(el => console.log(el));
   }
 
 }
