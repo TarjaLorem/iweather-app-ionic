@@ -5,22 +5,4 @@
 </ion-header>
 <ion-content padding>
   <h2>Clima es bueno!</h2>
-  <form (ngSubmit)="saveForm()">
-    <ion-item>
-      <ion-label>City</ion-label>
-      <ion-input type="text" [(ngModel)]="currentCity" name="currentCity"></ion-input>
-    </ion-item>
-    <button ion-button type="submit" block>GO</button>
-  </form>
-  <div *ngIf="data; else noData">
-    <div>Name: {{ data.name }}</div>
-    <div>Humidity: {{ data.main.humidity }}</div>
-    <div>Pressure: {{ data.main.pressure }}</div>
-    <div>Temperature: {{ data.main.temp-273 }}</div>
-    <div>Max temperature: {{ data.main.temp_max-273 }}</div>
-    <div>Min temperature: {{ data.main.temp_min-273 }}</div>
-  </div>
-  <ng-template #noData>
-    <div>Data not found</div>
-  </ng-template>
 </ion-content>
