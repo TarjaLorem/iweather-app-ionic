@@ -23,27 +23,25 @@ export class SettingsPage {
     if (this.city) {
       this.saveForm();
       this.weatherData = this.getWeatherData(this.data);
-      console.log(this.data);
     }
   }
 
   saveForm() {
     this.weatherProvider.getWeather(this.city).subscribe(res => {
       this.data = res;
+      console.log('DATA___', this.data);
     });
   }
 
   getWeatherData(data: any): WeatherData {
     const result: any = {};
     if (data) {
-      console.log("data___", data);
       // const { name, humidity, pressure, temperature } = data;
       result.name = data.name;
       result.humidity = data.main.humidity;
       result.pressure = data.main.pressure;
       result.temperature = data.main.temp;
     }
-    console.log("result___", result);
 
     return result;
   }
