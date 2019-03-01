@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class HomePage {
   weatherData$: Observable<any>;
-  data = [];
+  public temp;
 
   constructor(public navCtrl: NavController,
               private weatherProvider: WeatherProvider) {}
@@ -19,8 +19,16 @@ export class HomePage {
 	ionViewDidLoad() {
     // this.getWeatherData();
     this.weatherData$ = this.weatherProvider.getWeatherApi('Lviv').pipe(
-      map(({ main }: any) => main && Object.entries(main))
-    ).subscribe(data => console.log(data));
+      map(({ main }: any) => {
+        this.temp = main;
+        return this.temp;
+      })
+    )
+
+    // this.weatherData$.subscribe(data => {
+    //   this.temp = data;
+    //   console.log(this.temp);
+    // });
   }
 
   // getWeatherData() {
